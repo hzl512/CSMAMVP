@@ -3,7 +3,6 @@ package com.weicent.android.csmamvp.ui.add;
 import android.Manifest;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -34,6 +33,7 @@ import com.weicent.android.csmamvp.data.model.result.Category;
 import com.weicent.android.csmamvp.presenter.CommodityPresenter;
 import com.weicent.android.csmamvp.ui.list.CategoryListActivity;
 import com.weicent.android.csmamvp.ui.other.CropImageActivity;
+import com.weicent.android.csmamvp.util.GetPathFromUri4kitkatUtil;
 import com.weicent.android.csmamvp.util.MyStringUtil;
 import com.weicent.android.csmamvp.util.SPUtil;
 
@@ -233,7 +233,8 @@ public class CommodityAddActivity extends AbActivity implements CommodityContrac
 
             case PHOTO_PICKED_WITH_DATA:
                 Uri uri = mIntent.getData();
-                String currentFilePath = getPath(uri);
+                String currentFilePath = GetPathFromUri4kitkatUtil.getPath(this,uri);
+                AbLogUtil.d(this,"uri ="+uri.toString()+ "存储卡中图片的路径是 = " + currentFilePath);
                 if (!AbStrUtil.isEmpty(currentFilePath)) {
                     Intent intent1 = new Intent(this, CropImageActivity.class);
                     intent1.putExtra("PATH", currentFilePath);
@@ -256,21 +257,6 @@ public class CommodityAddActivity extends AbActivity implements CommodityContrac
                 imgView.setImageBitmap(AbImageUtil.getBitmap(new File(path1)));
                 break;
         }
-    }
-
-    /**
-     * 从相册得到的url转换为SD卡中图片路径
-     */
-    public String getPath(Uri uri) {
-        if (AbStrUtil.isEmpty(uri.getAuthority())) {
-            return null;
-        }
-        String[] projection = {MediaStore.Images.Media.DATA};
-        Cursor cursor = managedQuery(uri, projection, null, null, null);
-        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        cursor.moveToFirst();
-        String path = cursor.getString(column_index);
-        return path;
     }
 
     @OnClick({R.id.btnSure})
