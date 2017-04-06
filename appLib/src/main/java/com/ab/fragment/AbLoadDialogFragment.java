@@ -29,7 +29,7 @@ public class AbLoadDialogFragment extends AbDialogFragment {
 	private int mStyle;
 	private int mIndeterminateDrawable;
 	private int mTextSize = 15;
-	private int mTextColor = Color.WHITE;
+	private int mTextColor = Color.BLACK;
 	private View mContentView;
 	private TextView mTextView = null;
 	private ImageView mImageView = null;
@@ -64,8 +64,8 @@ public class AbLoadDialogFragment extends AbDialogFragment {
 		LinearLayout parent = new LinearLayout(this.getActivity());
 		parent.setGravity(Gravity.CENTER);
 		parent.setOrientation(LinearLayout.VERTICAL);
-		parent.setPadding(20, 20, 20, 20);
-		parent.setMinimumWidth(AbViewUtil.scaleValue(this.getActivity(), 400));
+		parent.setPadding(2, 20, 2, 20);
+		parent.setMinimumWidth(AbViewUtil.scaleValue(this.getActivity(), 180));
 		
 		mImageView = new ImageView(this.getActivity());
 		mImageView.setImageResource(mIndeterminateDrawable);
@@ -75,7 +75,7 @@ public class AbLoadDialogFragment extends AbDialogFragment {
 		mTextView.setText(mMessage);
 		mTextView.setTextColor(mTextColor);
 		mTextView.setTextSize(mTextSize);
-		mTextView.setPadding(5, 5, 5, 5);
+		mTextView.setPadding(3, 5, 3, 5);
 
 		parent.addView(mImageView, new LinearLayout.LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
