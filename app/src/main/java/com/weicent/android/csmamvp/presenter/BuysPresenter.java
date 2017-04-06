@@ -84,7 +84,7 @@ public class BuysPresenter implements BuysContract.Presenter ,BuysContract.AddPr
     @Override
     public void httpAdd(final String[] keys, final String[] values, final int aType) {
         final AbLoadDialogFragment dialogFragment = AbDialogUtil.showLoadDialog(mContext, R.mipmap.ic_load, "操作中...");
-        dialogFragment.setTextColor(R.color.black);
+        dialogFragment.setTextColor(mContext.getResources().getColor(R.color.black));
         dialogFragment.setAbDialogOnLoadListener(new AbDialogFragment.AbDialogOnLoadListener() {
             @Override
             public void onLoad() {

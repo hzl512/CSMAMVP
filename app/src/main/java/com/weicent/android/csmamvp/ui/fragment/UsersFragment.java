@@ -12,7 +12,6 @@ import com.ab.fragment.AbAlertDialogFragment;
 import com.ab.util.AbDialogUtil;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.app.Constants;
-import com.weicent.android.csmamvp.data.NetWorkWeb;
 import com.weicent.android.csmamvp.data.model.result.Users;
 import com.weicent.android.csmamvp.ui.LoginActivity;
 import com.weicent.android.csmamvp.ui.detail.UsersDetailActivity;
@@ -96,13 +95,4 @@ public class UsersFragment extends android.app.Fragment {
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
-    }
 }

@@ -17,9 +17,9 @@ import android.widget.TextView;
 
 import com.ab.activity.PermissionActivity;
 import com.ab.fragment.AbAlertDialogFragment;
-import com.ab.fragment.AbFragment;
 import com.ab.util.AbDialogUtil;
 import com.ab.view.pullview.AbPullToRefreshView;
+import com.weicent.android.csmamvp.BaseFragment;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.adapter.result.BuysAdapter;
 import com.weicent.android.csmamvp.app.Constants;
@@ -38,7 +38,7 @@ import butterknife.ButterKnife;
 /**
  * 求购列表
  */
-public class BuysFragment extends AbFragment implements AbPullToRefreshView.OnHeaderRefreshListener,BuysContract.View, AbPullToRefreshView.OnFooterLoadListener {
+public class BuysFragment extends BaseFragment implements AbPullToRefreshView.OnHeaderRefreshListener,BuysContract.View, AbPullToRefreshView.OnFooterLoadListener {
 
     ListView listView;
     TextView textTitle, textRight;
@@ -275,15 +275,4 @@ public class BuysFragment extends AbFragment implements AbPullToRefreshView.OnHe
     public void onLoadFinish() {
         abPullToRefreshView.onFooterLoadFinish();
     }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
-    }
-
 }

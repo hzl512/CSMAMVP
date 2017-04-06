@@ -9,9 +9,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ab.activity.AbActivity;
 import com.ab.view.pullview.AbPullToRefreshView;
 import com.ab.view.titlebar.AbTitleBar;
+import com.weicent.android.csmamvp.BaseActivity;
 import com.weicent.android.csmamvp.IBinDing;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.adapter.result.CategoryAdapter;
@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
 /**
  * 类别列表
  */
-public class CategoryListActivity extends AbActivity implements IBinDing, AbPullToRefreshView.OnHeaderRefreshListener,CategoryContract.View
+public class CategoryListActivity extends BaseActivity implements IBinDing, AbPullToRefreshView.OnHeaderRefreshListener,CategoryContract.View
         , AbPullToRefreshView.OnFooterLoadListener {
     @BindView(R.id.layoutLoading)
     RelativeLayout layoutLoading;
@@ -179,16 +179,6 @@ public class CategoryListActivity extends AbActivity implements IBinDing, AbPull
     @Override
     public void onLoadFinish() {
         abPullToRefreshView.onFooterLoadFinish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
     }
 
 }

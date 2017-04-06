@@ -9,9 +9,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ab.activity.AbActivity;
 import com.ab.view.pullview.AbPullToRefreshView;
 import com.ab.view.titlebar.AbTitleBar;
+import com.weicent.android.csmamvp.BaseActivity;
 import com.weicent.android.csmamvp.IBinDing;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.adapter.result.DepartmentsAdapter;
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 /**
  * 院系列表
  */
-public class DepartmentsListActivity extends AbActivity implements  AbPullToRefreshView.OnHeaderRefreshListener,DepartmentsContract.View
+public class DepartmentsListActivity extends BaseActivity implements  AbPullToRefreshView.OnHeaderRefreshListener,DepartmentsContract.View
         , AbPullToRefreshView.OnFooterLoadListener,IBinDing {
 
     @BindView(R.id.layoutLoading)
@@ -182,16 +182,6 @@ public class DepartmentsListActivity extends AbActivity implements  AbPullToRefr
     @Override
     public void onLoadFinish() {
         abPullToRefreshView.onFooterLoadFinish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
     }
 
 }

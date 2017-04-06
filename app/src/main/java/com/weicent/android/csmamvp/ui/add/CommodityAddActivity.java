@@ -16,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.ab.activity.AbActivity;
 import com.ab.util.AbDialogUtil;
 import com.ab.util.AbFileUtil;
 import com.ab.util.AbImageUtil;
@@ -25,10 +24,10 @@ import com.ab.util.AbStrUtil;
 import com.ab.util.AbToastUtil;
 import com.ab.view.titlebar.AbTitleBar;
 import com.loopj.android.http.RequestParams;
+import com.weicent.android.csmamvp.BaseActivity;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.app.Constants;
 import com.weicent.android.csmamvp.contract.CommodityContract;
-import com.weicent.android.csmamvp.data.NetWorkWeb;
 import com.weicent.android.csmamvp.data.model.result.Category;
 import com.weicent.android.csmamvp.presenter.CommodityPresenter;
 import com.weicent.android.csmamvp.ui.list.CategoryListActivity;
@@ -47,7 +46,7 @@ import butterknife.OnClick;
 /**
  * 商品添加
  */
-public class CommodityAddActivity extends AbActivity implements CommodityContract.AddView{
+public class CommodityAddActivity extends BaseActivity implements CommodityContract.AddView{
 
     @BindView(R.id.textCommodityName)
     EditText textCommodityName;
@@ -296,16 +295,6 @@ public class CommodityAddActivity extends AbActivity implements CommodityContrac
     @Override
     public void addSuccess() {
         finish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
     }
 
 }

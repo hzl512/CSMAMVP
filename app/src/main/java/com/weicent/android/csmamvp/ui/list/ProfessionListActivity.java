@@ -9,9 +9,9 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ab.activity.AbActivity;
 import com.ab.view.pullview.AbPullToRefreshView;
 import com.ab.view.titlebar.AbTitleBar;
+import com.weicent.android.csmamvp.BaseActivity;
 import com.weicent.android.csmamvp.IBinDing;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.adapter.result.ProfessionAdapter;
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 /**
  * 专业列表
  */
-public class ProfessionListActivity extends AbActivity implements IBinDing, AbPullToRefreshView.OnHeaderRefreshListener
+public class ProfessionListActivity extends BaseActivity implements IBinDing, AbPullToRefreshView.OnHeaderRefreshListener
         , AbPullToRefreshView.OnFooterLoadListener,ProfessionContract.View {
 
     @BindView(R.id.layoutLoading)
@@ -184,16 +184,6 @@ public class ProfessionListActivity extends AbActivity implements IBinDing, AbPu
     @Override
     public void onLoadFinish() {
         abPullToRefreshView.onFooterLoadFinish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
     }
 
 }

@@ -15,12 +15,12 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ab.activity.AbActivity;
 import com.ab.fragment.AbAlertDialogFragment;
 import com.ab.image.AbImageLoader;
 import com.ab.util.AbDateUtil;
 import com.ab.util.AbDialogUtil;
 import com.ab.view.titlebar.AbTitleBar;
+import com.weicent.android.csmamvp.BaseActivity;
 import com.weicent.android.csmamvp.IBinDing;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.app.Constants;
@@ -42,7 +42,7 @@ import butterknife.OnClick;
 /**
  * 详情
  */
-public class CommodityDetailActivity extends AbActivity implements IBinDing ,CommodityContract.DetailView{
+public class CommodityDetailActivity extends BaseActivity implements IBinDing ,CommodityContract.DetailView{
 
     @BindView(R.id.textCommodityName)
     TextView textCommodityName;
@@ -247,16 +247,6 @@ public class CommodityDetailActivity extends AbActivity implements IBinDing ,Com
                     AbDialogUtil.showDialog(view1, Gravity.BOTTOM);
                 }
                 break;
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (NetWorkWeb.getInstance().getRequestClient()==null){
-            return;
-        }else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
         }
     }
 

@@ -12,9 +12,9 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.ab.fragment.AbAlertDialogFragment;
-import com.ab.fragment.AbFragment;
 import com.ab.util.AbDialogUtil;
 import com.ab.view.pullview.AbPullToRefreshView;
+import com.weicent.android.csmamvp.BaseFragment;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.adapter.result.CommodityAdapter;
 import com.weicent.android.csmamvp.app.Constants;
@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
 /**
  * 商品列表
  */
-public class CommodityFragment extends AbFragment implements AbPullToRefreshView.OnHeaderRefreshListener,CommodityContract.View
+public class CommodityFragment extends BaseFragment implements AbPullToRefreshView.OnHeaderRefreshListener,CommodityContract.View
         , AbPullToRefreshView.OnFooterLoadListener {
     GridView gridView;
     AbPullToRefreshView abPullToRefreshView;

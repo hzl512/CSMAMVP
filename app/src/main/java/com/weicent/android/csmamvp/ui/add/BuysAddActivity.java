@@ -4,12 +4,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import com.ab.activity.AbActivity;
 import com.ab.view.titlebar.AbTitleBar;
+import com.weicent.android.csmamvp.BaseActivity;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.app.Constants;
 import com.weicent.android.csmamvp.contract.BuysContract;
-import com.weicent.android.csmamvp.data.NetWorkWeb;
 import com.weicent.android.csmamvp.presenter.BuysPresenter;
 import com.weicent.android.csmamvp.util.SPUtil;
 
@@ -20,7 +19,7 @@ import butterknife.OnClick;
 /**
  * 添加求购
  */
-public class BuysAddActivity extends AbActivity implements BuysContract.AddView{
+public class BuysAddActivity extends BaseActivity implements BuysContract.AddView{
 
     @BindView(R.id.textBuysName)
     EditText textBuysName;
@@ -86,16 +85,6 @@ public class BuysAddActivity extends AbActivity implements BuysContract.AddView{
     @Override
     public void onSuccess() {
         finish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
     }
 
 }

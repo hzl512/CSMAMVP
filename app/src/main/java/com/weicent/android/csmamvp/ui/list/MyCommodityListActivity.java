@@ -9,9 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ab.activity.AbActivity;
 import com.ab.view.pullview.AbPullToRefreshView;
 import com.ab.view.titlebar.AbTitleBar;
+import com.weicent.android.csmamvp.BaseActivity;
 import com.weicent.android.csmamvp.IBinDing;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.adapter.result.CommodityAdapter;
@@ -32,7 +32,7 @@ import butterknife.ButterKnife;
 /**
  * 我的商品
  */
-public class MyCommodityListActivity extends AbActivity implements IBinDing, AbPullToRefreshView.OnHeaderRefreshListener,CommodityContract.View
+public class MyCommodityListActivity extends BaseActivity implements IBinDing, AbPullToRefreshView.OnHeaderRefreshListener,CommodityContract.View
         , AbPullToRefreshView.OnFooterLoadListener {
 
     @BindView(R.id.layoutLoading)
@@ -196,16 +196,6 @@ public class MyCommodityListActivity extends AbActivity implements IBinDing, AbP
     @Override
     public void onLoadFinish() {
         abPullToRefreshView.onFooterLoadFinish();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
     }
 
 }

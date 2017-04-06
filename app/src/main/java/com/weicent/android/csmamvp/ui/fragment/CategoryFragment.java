@@ -11,8 +11,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
-import com.ab.fragment.AbFragment;
 import com.ab.view.pullview.AbPullToRefreshView;
+import com.weicent.android.csmamvp.BaseFragment;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.adapter.result.CategoryAdapter;
 import com.weicent.android.csmamvp.app.Constants;
@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
 /**
  * 分类列表
  */
-public class CategoryFragment extends AbFragment implements AbPullToRefreshView.OnHeaderRefreshListener, CategoryContract.View
+public class CategoryFragment extends BaseFragment implements AbPullToRefreshView.OnHeaderRefreshListener, CategoryContract.View
         , AbPullToRefreshView.OnFooterLoadListener {
     GridView gridView;
     AbPullToRefreshView abPullToRefreshView;

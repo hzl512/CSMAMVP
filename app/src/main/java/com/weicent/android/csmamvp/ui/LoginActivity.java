@@ -6,10 +6,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 
-import com.ab.activity.AbActivity;
+import com.weicent.android.csmamvp.BaseActivity;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.contract.UsersContract;
-import com.weicent.android.csmamvp.data.NetWorkWeb;
 import com.weicent.android.csmamvp.presenter.UsersPresenter;
 import com.weicent.android.csmamvp.util.StringUtil;
 import com.weicent.android.csmamvp.util.ToastUtil;
@@ -21,7 +20,7 @@ import butterknife.OnClick;
 /**
  * 登录
  */
-public class LoginActivity extends AbActivity implements UsersContract.LoginView {
+public class LoginActivity extends BaseActivity implements UsersContract.LoginView {
 
     @BindView(R.id.textName)
     EditText textName;
@@ -91,16 +90,5 @@ public class LoginActivity extends AbActivity implements UsersContract.LoginView
         }
         return super.onKeyDown(keyCode, event);
     }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
-    }
-
 }
 

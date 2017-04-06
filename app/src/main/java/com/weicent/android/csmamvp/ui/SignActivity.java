@@ -6,12 +6,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.ab.activity.AbActivity;
 import com.ab.view.titlebar.AbTitleBar;
+import com.weicent.android.csmamvp.BaseActivity;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.app.Constants;
 import com.weicent.android.csmamvp.contract.UsersContract;
-import com.weicent.android.csmamvp.data.NetWorkWeb;
 import com.weicent.android.csmamvp.data.model.result.Departments;
 import com.weicent.android.csmamvp.data.model.result.Profession;
 import com.weicent.android.csmamvp.presenter.UsersPresenter;
@@ -28,7 +27,7 @@ import butterknife.OnClick;
 /**
  * 注册
  */
-public class SignActivity extends AbActivity  implements UsersContract.SignView{
+public class SignActivity extends BaseActivity implements UsersContract.SignView{
 
     @BindView(R.id.textDepartmentsID)
     TextView textDepartmentsID;
@@ -146,16 +145,6 @@ public class SignActivity extends AbActivity  implements UsersContract.SignView{
     public void onSignSuccess() {
         startActivity(new Intent(SignActivity.this, LoginActivity.class)
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
     }
 
 }

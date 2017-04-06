@@ -6,8 +6,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ab.activity.AbActivity;
 import com.ab.view.titlebar.AbTitleBar;
+import com.weicent.android.csmamvp.BaseActivity;
 import com.weicent.android.csmamvp.IBinDing;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.app.Constants;
@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * 个人资料
  */
-public class UsersDetailActivity extends AbActivity implements IBinDing ,UsersContract.DetailView{
+public class UsersDetailActivity extends BaseActivity implements IBinDing ,UsersContract.DetailView{
 
     @BindView(R.id.layoutLoading)
     RelativeLayout layoutLoading;
@@ -122,16 +122,6 @@ public class UsersDetailActivity extends AbActivity implements IBinDing ,UsersCo
         textProfessionID.setText(model.professionID);
         textUsersGrade.setText(model.usersGrade);
         layoutContext.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (NetWorkWeb.getInstance().getRequestClient() == null) {
-            return;
-        } else {
-            NetWorkWeb.getInstance().getRequestClient().cancelAllRequests(true);//关闭所有请求
-        }
     }
 
 }
