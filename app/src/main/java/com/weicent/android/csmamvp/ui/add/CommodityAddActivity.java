@@ -76,7 +76,7 @@ public class CommodityAddActivity extends AbActivity implements CommodityContrac
     @BindView(R.id.imgView)
     ImageButton imgView;
 
-    private View avatarView = null;
+    private View mAvatarView = null;
     private AbTitleBar mAbTitleBar = null;
     /* 用来标识请求照相功能的activity */
     private static final int CAMERA_WITH_DATA = 3023;
@@ -120,14 +120,14 @@ public class CommodityAddActivity extends AbActivity implements CommodityContrac
             @Override
             public void onClick(View v) {
 
-                avatarView = mInflater.inflate(R.layout.choose_avatar, null);
-                Button albumButton = (Button) avatarView.findViewById(R.id.choose_album);
-                Button camButton = (Button) avatarView.findViewById(R.id.choose_cam);
-                Button cancelButton = (Button) avatarView.findViewById(R.id.choose_cancel);
+                mAvatarView = mInflater.inflate(R.layout.choose_avatar, null);
+                Button albumButton = (Button) mAvatarView.findViewById(R.id.choose_album);
+                Button camButton = (Button) mAvatarView.findViewById(R.id.choose_cam);
+                Button cancelButton = (Button) mAvatarView.findViewById(R.id.choose_cancel);
                 albumButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        AbDialogUtil.removeDialog(avatarView);
+                        AbDialogUtil.removeDialog(mAvatarView);
                         checkPermission(new CheckPermListener() {
                             @Override
                             public void superPermission() {
@@ -148,7 +148,7 @@ public class CommodityAddActivity extends AbActivity implements CommodityContrac
 
                     @Override
                     public void onClick(View v) {
-                        AbDialogUtil.removeDialog(avatarView);
+                        AbDialogUtil.removeDialog(mAvatarView);
                         checkPermission(new CheckPermListener() {
                             @Override
                             public void superPermission() {
@@ -162,11 +162,11 @@ public class CommodityAddActivity extends AbActivity implements CommodityContrac
 
                     @Override
                     public void onClick(View v) {
-                        AbDialogUtil.removeDialog(avatarView);
+                        AbDialogUtil.removeDialog(mAvatarView);
                     }
 
                 });
-                AbDialogUtil.showDialog(avatarView, Gravity.BOTTOM);
+                AbDialogUtil.showDialog(mAvatarView, Gravity.BOTTOM);
             }
         });
         textCategoryID.setOnClickListener(new View.OnClickListener() {
