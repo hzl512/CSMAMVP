@@ -63,7 +63,6 @@ public class UsersPresenter implements UsersContract.LoginPresenter,UsersContrac
     @Override
     public void login(final String[] keys, final String[] values, int aType) {
         final AbLoadDialogFragment dialogFragment = AbDialogUtil.showLoadDialog(mContext, R.mipmap.ic_load, "正在登录,请稍候...");
-        dialogFragment.setTextColor(R.color.black);
         dialogFragment.setAbDialogOnLoadListener(new AbDialogFragment.AbDialogOnLoadListener() {
             @Override
             public void onLoad() {
@@ -107,7 +106,6 @@ public class UsersPresenter implements UsersContract.LoginPresenter,UsersContrac
     @Override
     public void sign(final String[] keys, final String[] values, final int aType) {
         final AbLoadDialogFragment mDialogFragment = AbDialogUtil.showLoadDialog(mContext, R.mipmap.ic_load, "请稍候...");
-        mDialogFragment.setTextColor(R.color.black);
         mDialogFragment.setAbDialogOnLoadListener(new AbDialogFragment.AbDialogOnLoadListener() {
             @Override
             public void onLoad() {
