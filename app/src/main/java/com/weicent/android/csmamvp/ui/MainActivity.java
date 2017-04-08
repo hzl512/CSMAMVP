@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import com.ab.activity.AbActivity;
+import com.ab.util.AbLogUtil;
 import com.ab.view.sliding.AbBottomTabView;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.app.Constants;
@@ -91,7 +92,46 @@ public class MainActivity extends AbActivity {
         //增加一组
         abBottomTabView.addItemViews(tabTexts, fragments, mTabDrawables);
         abBottomTabView.setTabPadding(10, 10, 10, 10);
+        AbLogUtil.d("MainActivity","onCreate");
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        AbLogUtil.d("MainActivity","onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        AbLogUtil.d("MainActivity","onResume");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        AbLogUtil.d("MainActivity","onPause");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        AbLogUtil.d("MainActivity","onRestart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        AbLogUtil.d("MainActivity","onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        AbLogUtil.d("MainActivity","onDestroy");
+
+    }
+
 
     /**
      * 按键点击事件处理

@@ -412,7 +412,7 @@ public class DownloadUpdateService extends Service {
     private boolean mCheck = false;
 
     private boolean getUpdate() {
-        NetWorkWeb.getInstance().doRequest("UpdateServlet", new ResultHandlerForJson<ResUpdate>(ResUpdate.class) {
+        NetWorkWeb.getInstance().doRequest(Constants.URL_UPDATE_SERVLET, new ResultHandlerForJson<ResUpdate>(ResUpdate.class) {
             @Override
             public void onSuccess(int statusCode, Header[] headers, ResUpdate resultJson) {
                 if (resultJson.errorcode == 0) {

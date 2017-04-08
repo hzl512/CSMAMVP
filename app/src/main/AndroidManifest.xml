@@ -88,7 +88,6 @@
         <activity android:name=".ui.other.CheckUpdateActivity"
             android:screenOrientation="portrait"/>
         <!--如果您想兼容Android N或者以上的设备，必须要在AndroidManifest.xml文件中配置FileProvider来访问共享路径的文件。
-        如果你使用的第三方库也配置了同样的FileProvider，你需要将第三方库配置的路径copy到我们配置的provider_path文件下
         com.weicent.android.csmamvp-->
         <provider
             android:name="android.support.v4.content.FileProvider"

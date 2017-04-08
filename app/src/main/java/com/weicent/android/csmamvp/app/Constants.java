@@ -40,6 +40,8 @@ public class Constants {
     public static final String URL_DEPARTMENTS_SERVLET="DepartmentsServlet";
     //专业URL
     public static final String URL_PROFESSION_SERVLET="ProfessionServlet";
+    //更新URL
+    public static final String URL_UPDATE_SERVLET="UpdateServlet";
 
     //下载更新
     public final static String DOWNLOAD_FILE_APK_NAME = "csma.apk";

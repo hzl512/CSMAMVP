@@ -1,7 +1,11 @@
 package com.weicent.android.csmamvp.data;
 
+import android.text.TextUtils;
+
 import com.google.gson.Gson;
 import com.loopj.android.http.TextHttpResponseHandler;
+import com.weicent.android.csmamvp.app.MyApplication;
+import com.weicent.android.csmamvp.util.ToastUtil;
 
 import org.apache.http.Header;
 
@@ -21,6 +25,10 @@ public abstract class ResultHandlerForJson<T extends Object> extends TextHttpRes
     @Override
     public void onSuccess(int statusCode, Header[] headers, String resultString) {
         try {
+            if (TextUtils.isEmpty(resultString)){
+                ToastUtil.showLong(MyApplication.getContext(),"服务器返回为空！");
+                return;
+            }
             T t = gson.fromJson(resultString, clazz);
             if (statusCode != 200) {
                 return;
@@ -29,9 +37,11 @@ public abstract class ResultHandlerForJson<T extends Object> extends TextHttpRes
                 onSuccess(statusCode, headers, t);
             } catch (Exception e) {
                 e.printStackTrace();
+                ToastUtil.showLong(MyApplication.getContext(),"服务器返回错误！");
             }
         } catch (TypeNotPresentException e) {
             e.printStackTrace();
+            ToastUtil.showLong(MyApplication.getContext(),"数据解析错误");
         }
     }
 
