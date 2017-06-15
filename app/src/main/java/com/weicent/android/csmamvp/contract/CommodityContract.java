@@ -31,12 +31,15 @@ public interface CommodityContract {
         void httpGetDetailOnFinish();
 
         void httpUpdateViewsSuccess(BaseResult resultJson, int views);
+
     }
 
     interface DetailPresenter extends BasePresenter {
         void httpGetDetail(Integer id, int aType);
 
         void httpUpdateViews(Integer id, int views, int aType);
+
+        void getCacheDetail(Integer id, int aType);
     }
 
     //List
@@ -58,6 +61,7 @@ public interface CommodityContract {
 
         //上拉
         void onLoadFinish();
+
     }
 
     interface Presenter extends BasePresenter {

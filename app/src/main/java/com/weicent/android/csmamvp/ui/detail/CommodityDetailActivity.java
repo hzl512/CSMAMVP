@@ -102,7 +102,7 @@ public class CommodityDetailActivity extends BaseActivity implements IBinDing ,C
         if (mType==1){
             layoutBottom.setVisibility(View.GONE);
         }
-        mPresenter=new CommodityPresenter(this);
+        mPresenter=new CommodityPresenter(this,this);
         mAbTitleBar = this.getTitleBar();
         mAbTitleBar.setTitleText("商品详情");
         mAbTitleBar.setLogo(R.drawable.button_selector_back);
@@ -118,7 +118,7 @@ public class CommodityDetailActivity extends BaseActivity implements IBinDing ,C
         layoutContext.setVisibility(View.GONE);
         layoutLoading.setVisibility(View.VISIBLE);
         layoutMsg.setVisibility(View.GONE);
-        mPresenter.httpGetDetail(mModel.id,6);
+        mPresenter.getCacheDetail(mModel.id,6);
     }
 
     @Override

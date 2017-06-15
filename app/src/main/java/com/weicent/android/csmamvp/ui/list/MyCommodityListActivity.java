@@ -66,7 +66,7 @@ public class MyCommodityListActivity extends BaseActivity implements IBinDing, A
 
     @Override
     public void initView() {
-        mPresenter=new CommodityPresenter(this);
+        mPresenter=new CommodityPresenter(this,this);
         mType = getIntent().getIntExtra("type", 0);
         mAbTitleBar = this.getTitleBar();
         mAbTitleBar.setTitleText("我的商品");

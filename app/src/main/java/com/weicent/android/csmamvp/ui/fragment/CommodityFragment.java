@@ -64,7 +64,7 @@ public class CommodityFragment extends BaseFragment implements AbPullToRefreshVi
     }
 
     public void initView() {
-        mPresenter=new CommodityPresenter(this);
+        mPresenter=new CommodityPresenter(this,getActivity());
         textTitle.setText(R.string.title_index);
         textRight.setVisibility(View.VISIBLE);
         textRight.setText("我要发布");

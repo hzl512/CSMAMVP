@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 
 import com.ab.activity.AbActivity;
@@ -41,6 +42,7 @@ public class MainActivity extends AbActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        Log.d("智能ABC","智能ABC");
 
         checkPermission(new CheckPermListener() {
             @Override
@@ -129,9 +131,7 @@ public class MainActivity extends AbActivity {
     protected void onDestroy() {
         super.onDestroy();
         AbLogUtil.d("MainActivity","onDestroy");
-
     }
-
 
     /**
      * 按键点击事件处理

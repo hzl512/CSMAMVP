@@ -2,6 +2,7 @@ package com.weicent.android.csmamvp.data.model.result;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
 /**
  *
  */

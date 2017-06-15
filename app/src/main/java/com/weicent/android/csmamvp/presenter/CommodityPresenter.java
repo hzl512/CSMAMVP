@@ -5,6 +5,7 @@ import android.content.Context;
 import com.ab.fragment.AbDialogFragment;
 import com.ab.fragment.AbLoadDialogFragment;
 import com.ab.util.AbDialogUtil;
+import com.ab.util.AbLogUtil;
 import com.loopj.android.http.RequestParams;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.app.Constants;
@@ -14,6 +15,7 @@ import com.weicent.android.csmamvp.data.NetWorkWeb;
 import com.weicent.android.csmamvp.data.ResultHandlerForJson;
 import com.weicent.android.csmamvp.data.result.list.ResCommodityList;
 import com.weicent.android.csmamvp.data.result.model.ResCommodity;
+import com.weicent.android.csmamvp.util.ACacheUtil;
 import com.weicent.android.csmamvp.util.MyStringUtil;
 import com.weicent.android.csmamvp.util.ToastUtil;
 
@@ -30,19 +32,25 @@ public class CommodityPresenter implements CommodityContract.Presenter ,Commodit
     private CommodityContract.View mView;
     private CommodityContract.DetailView mDetailView;
     private CommodityContract.AddView mAddView;
+    private ACacheUtil mACacheUtil;
 
     //list
-    public CommodityPresenter(CommodityContract.View mView) {
+    public CommodityPresenter(CommodityContract.View mView,Context context) {
         this.mView = mView;
+        this.mContext=context;
+        this.mACacheUtil=ACacheUtil.get(mContext);
     }
     //detail
-    public CommodityPresenter(CommodityContract.DetailView mDetailView) {
+    public CommodityPresenter(CommodityContract.DetailView mDetailView,Context context) {
         this.mDetailView = mDetailView;
+        this.mContext=context;
+        this.mACacheUtil=ACacheUtil.get(mContext);
     }
     //add
     public CommodityPresenter(CommodityContract.AddView mAddView,Context context) {
         this.mAddView = mAddView;
         this.mContext=context;
+        this.mACacheUtil=ACacheUtil.get(mContext);
     }
 
     @Override
@@ -122,12 +130,13 @@ public class CommodityPresenter implements CommodityContract.Presenter ,Commodit
     }
 
     @Override
-    public void httpGetDetail(Integer id, int aType) {
+    public void httpGetDetail(final Integer id, int aType) {
         NetWorkWeb.getInstance().doRequest(Constants.URL_COMMODITY_SERVLET, new ResultHandlerForJson<ResCommodity>(ResCommodity.class) {
 
             @Override
             public void onSuccess(int statusCode, Header[] headers, ResCommodity resultJson) {
                 mDetailView.httpGetDetailOnSuccess(resultJson);
+                mACacheUtil.put(Constants.URL_COMMODITY_SERVLET+id,resultJson);
             }
 
             @Override
@@ -151,6 +160,19 @@ public class CommodityPresenter implements CommodityContract.Presenter ,Commodit
                 mDetailView.httpUpdateViewsSuccess(resultJson,views);
             }
         }, MyStringUtil.toJsonString(new String[]{"id"},new String[]{String.valueOf(id)}), aType);
+    }
+
+    @Override
+    public void getCacheDetail(final Integer id, int aType) {
+        ResCommodity resCommodity=(ResCommodity)mACacheUtil.getAsObjectOfMap(Constants.URL_COMMODITY_SERVLET+id);
+        if (resCommodity==null){
+            httpGetDetail(id,aType);
+            AbLogUtil.d("CommodityPresenter","1");
+        }else {
+            mDetailView.httpGetDetailOnFinish();
+            mDetailView.httpGetDetailOnSuccess(resCommodity);
+            AbLogUtil.d("CommodityPresenter",resCommodity.data.toString());
+        }
     }
 
     @Override

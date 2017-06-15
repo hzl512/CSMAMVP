@@ -66,7 +66,7 @@ public class CommodityListActivity extends BaseActivity implements IBinDing, AbP
 
     @Override
     public void initView() {
-        mPresenter=new CommodityPresenter(this);
+        mPresenter=new CommodityPresenter(this,this);
         mModel = getIntent().getParcelableExtra(Constants.MODEL_NAME);
         mAbTitleBar = this.getTitleBar();
         mAbTitleBar.setTitleText(mModel.categoryName);

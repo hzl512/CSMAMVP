@@ -7,9 +7,9 @@ package com.weicent.android.csmamvp.app;
 public class Constants {
 
     //基础URL
-//    public static final String BASE_URL = "http://192.168.1.226:8080/CampusSecondaryMarket/";
+    public static final String BASE_URL = "http://192.168.31.169:8080/CampusSecondaryMarket/";
     //本地URL
-    public static final String BASE_URL = "http://10.0.2.2:8080/CampusSecondaryMarket/";
+//    public static final String BASE_URL = "http://10.0.2.2:8080/CampusSecondaryMarket/";
 
     //网络连接超时时间
     public static final int NET_OUT_TIME=10000;//10秒
