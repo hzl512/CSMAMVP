@@ -6,6 +6,7 @@ import com.ab.fragment.AbDialogFragment;
 import com.ab.fragment.AbLoadDialogFragment;
 import com.ab.util.AbDialogUtil;
 import com.ab.util.AbLogUtil;
+import com.ab.util.AbStrUtil;
 import com.loopj.android.http.RequestParams;
 import com.weicent.android.csmamvp.R;
 import com.weicent.android.csmamvp.app.Constants;
@@ -136,6 +137,7 @@ public class CommodityPresenter implements CommodityContract.Presenter ,Commodit
             @Override
             public void onSuccess(int statusCode, Header[] headers, ResCommodity resultJson) {
                 mDetailView.httpGetDetailOnSuccess(resultJson);
+                mACacheUtil.put(Constants.URL_COMMODITY_SERVLET+id,resultJson.toString(),60);
                 mACacheUtil.put(Constants.URL_COMMODITY_SERVLET+id,resultJson);
             }
 
@@ -164,15 +166,22 @@ public class CommodityPresenter implements CommodityContract.Presenter ,Commodit
 
     @Override
     public void getCacheDetail(final Integer id, int aType) {
-        ResCommodity resCommodity=(ResCommodity)mACacheUtil.getAsObjectOfMap(Constants.URL_COMMODITY_SERVLET+id);
-        if (resCommodity==null){
+        String resString=mACacheUtil.getAsString(Constants.URL_COMMODITY_SERVLET+id);
+        if (AbStrUtil.isEmpty(resString)){//如果缓存中不存在该数据，则拉去数据，否则读取缓存中的数据
             httpGetDetail(id,aType);
-            AbLogUtil.d("CommodityPresenter","1");
+            AbLogUtil.d("CommodityPresenter","0");
         }else {
-            mDetailView.httpGetDetailOnFinish();
-            mDetailView.httpGetDetailOnSuccess(resCommodity);
-            AbLogUtil.d("CommodityPresenter",resCommodity.data.toString());
+            ResCommodity resCommodity=(ResCommodity)mACacheUtil.getAsObjectOfMap(Constants.URL_COMMODITY_SERVLET+id);
+            if (resCommodity==null){
+                httpGetDetail(id,aType);
+                AbLogUtil.d("CommodityPresenter","1");
+            }else {
+                mDetailView.httpGetDetailOnFinish();
+                mDetailView.httpGetDetailOnSuccess(resCommodity);
+                AbLogUtil.d("CommodityPresenter",resCommodity.data.toString());
+            }
         }
+
     }
 
     @Override

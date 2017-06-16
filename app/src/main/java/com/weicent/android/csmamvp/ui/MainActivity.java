@@ -18,6 +18,7 @@ import com.weicent.android.csmamvp.ui.fragment.BuysFragment;
 import com.weicent.android.csmamvp.ui.fragment.CategoryFragment;
 import com.weicent.android.csmamvp.ui.fragment.CommodityFragment;
 import com.weicent.android.csmamvp.ui.fragment.UsersFragment;
+import com.weicent.android.csmamvp.util.ACacheUtil;
 import com.weicent.android.csmamvp.util.AppUtil;
 import com.weicent.android.csmamvp.util.ToastUtil;
 
@@ -36,6 +37,7 @@ public class MainActivity extends AbActivity {
     AbBottomTabView abBottomTabView;
     private List<Drawable> mTabDrawables = null;
     private long mExitTime = 0;
+    private ACacheUtil mACacheUntil=ACacheUtil.get(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +149,7 @@ public class MainActivity extends AbActivity {
                 ToastUtil.showLong(MainActivity.this,"再按一次退出程序");
                 mExitTime = System.currentTimeMillis();
             } else {
+                mACacheUntil.clear();
                 this.finish();
                 System.exit(0);
             }
