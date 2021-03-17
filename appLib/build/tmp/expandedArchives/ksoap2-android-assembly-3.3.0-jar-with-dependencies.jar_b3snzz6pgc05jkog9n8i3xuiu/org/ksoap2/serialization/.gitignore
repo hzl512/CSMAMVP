@@ -1,0 +1,17 @@
+/AttributeContainer.class
+/AttributeInfo.class
+/DM.class
+/FwdRef.class
+/HasAttributes.class
+/KvmSerializable.class
+/Marshal.class
+/MarshalBase64.class
+/MarshalDate.class
+/MarshalFloat.class
+/MarshalHashtable$ItemSoapObject.class
+/MarshalHashtable.class
+/NullSoapObject.class
+/PropertyInfo.class
+/SoapObject.class
+/SoapPrimitive.class
+/SoapSerializationEnvelope.class

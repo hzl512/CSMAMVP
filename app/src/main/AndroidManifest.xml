@@ -34,7 +34,9 @@
         android:launchMode="singleTask"
         android:supportsRtl="false"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.MainActivity">
+        <activity
+            android:name=".ui.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -85,8 +87,9 @@
             android:name=".ui.other.UpdateDialogActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo.Dialog.NoActionBar" />
-        <activity android:name=".ui.other.CheckUpdateActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.other.CheckUpdateActivity"
+            android:screenOrientation="portrait" />
         <!--如果您想兼容Android N或者以上的设备，必须要在AndroidManifest.xml文件中配置FileProvider来访问共享路径的文件。
         com.weicent.android.csmamvp-->
         <provider
@@ -96,9 +99,9 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
+                android:resource="@xml/provider_paths" />
         </provider>
-        <service android:name=".services.DownloadUpdateService"/>
+        <service android:name=".services.DownloadUpdateService" />
     </application>
 
 </manifest>
